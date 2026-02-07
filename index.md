@@ -8,4 +8,5 @@ Fritz Haber Research Center for Molecular Dynamics, Hebrew University of Jerusal
 🔗 **GitHub:** [satyaranjan009](https://github.com/satyaranjan009)  
 🔗 **CV:** [Download PDF](SatyaranjanBiswal_CV.pdf)  
 🔗 **Google Website:** [satyaranjanbiswal – Google Sites](https://sites.google.com/view/satyaranjanbiswal/home)
+<img src="profile.jpg" alt="Satyaranjan Biswal" width="180" style="border-radius:50%;">
 
