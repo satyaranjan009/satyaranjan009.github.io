@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Satyaranjan Biswal | Computational Biophysicist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#fff;--bg2:#f8f9fc;--bg3:#f0f3f8;
+      --border:#dce3ef;--border2:#c8d4e8;
+      --text:#1a2540;--muted:#6b7fa3;
+      --gold:#8c6a1a;--gold2:#b88a2a;--gold-bg:#fdf8ec;
+      --teal:#0e7c6e;--teal-bg:#eef9f7;--accent:#1d4ed8;
+      --fh:'Cormorant Garamond',Georgia,serif;
+      --fb:'IBM Plex Sans',sans-serif;
+      --fm:'IBM Plex Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:15px;line-height:1.7;display:flex;min-height:100vh}
+
+    /* SIDEBAR */
+    aside{width:260px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;padding:2.5rem 1.6rem;overflow-y:auto;transition:transform .3s}
+    .slogo{font-family:var(--fh);font-size:1.55rem;font-weight:600;color:var(--text);line-height:1.2;margin-bottom:.3rem}
+    .srole{font-size:.67rem;color:var(--gold);letter-spacing:.13em;text-transform:uppercase;font-weight:500;margin-bottom:2rem;padding-bottom:1.8rem;border-bottom:1px solid var(--border)}
+    nav{flex:1}
+    nav a{display:flex;align-items:center;gap:.7rem;padding:.6rem .85rem;border-radius:7px;color:var(--muted);text-decoration:none;font-size:.84rem;margin-bottom:.15rem;transition:all .18s;cursor:pointer;border:1px solid transparent}
+    nav a:hover{color:var(--text);background:var(--bg3);border-color:var(--border)}
+    nav a.active{color:var(--gold);background:var(--gold-bg);border-color:#e8d8a0;font-weight:500}
+    .sfooter{margin-top:auto;padding-top:1.8rem;border-top:1px solid var(--border);font-size:.71rem;color:var(--muted);line-height:1.8}
+    .sfooter a{color:var(--teal);text-decoration:none}
+    .sfooter a:hover{text-decoration:underline}
+
+    /* MAIN */
+    main{margin-left:260px;flex:1;min-height:100vh}
+    section{display:none;padding:3.5rem 4rem;max-width:960px;animation:fadeIn .35s ease}
+    section.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    h1{font-family:var(--fh);font-size:3rem;font-weight:300;color:var(--text);line-height:1.12;margin-bottom:.3rem}
+    h2{font-family:var(--fh);font-size:1.8rem;font-weight:400;color:var(--text);margin-bottom:1.4rem;padding-bottom:.5rem;border-bottom:2px solid var(--border)}
+    h3{font-family:var(--fh);font-size:1.25rem;font-weight:600;color:var(--text);margin-bottom:.4rem}
+    p{margin-bottom:1rem;color:#3a4a6b}
+    .lbl{font-size:.65rem;font-family:var(--fm);text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:.7rem;display:block}
+
+    /* ── HOME HERO ── */
+    .hero{border-radius:18px;overflow:hidden;margin-bottom:2.5rem;position:relative;background:linear-gradient(135deg,#0a1628 0%,#0d2e28 60%,#120a00 100%);min-height:280px;display:flex;align-items:center}
+    .hero-content{position:relative;z-index:2;padding:2.5rem 3rem;display:flex;gap:2.5rem;align-items:center;width:100%}
+    .hero-avatar{width:100px;height:100px;border-radius:50%;border:3px solid rgba(255,255,255,.85);box-shadow:0 0 0 6px rgba(255,255,255,.08);flex-shrink:0;background:linear-gradient(135deg,#1e3a5f,#0e7c6e);display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+    .hero-text h1{color:#fff;font-size:2.4rem;margin-bottom:.4rem}
+    .hero-tagline{font-family:var(--fh);font-style:italic;color:rgba(255,255,255,.75);font-size:.93rem;margin-bottom:1rem;display:block}
+    .hero-addr{font-size:.73rem;color:rgba(255,255,255,.55);font-family:var(--fm);line-height:1.7;margin-bottom:1.2rem}
+    .socials{display:flex;gap:.5rem;flex-wrap:wrap}
+    .sb{display:inline-flex;align-items:center;gap:.3rem;padding:.32rem .8rem;border:1px solid rgba(255,255,255,.25);border-radius:6px;text-decoration:none;font-size:.72rem;color:rgba(255,255,255,.88);background:rgba(255,255,255,.08);transition:all .18s;font-family:var(--fm);backdrop-filter:blur(4px)}
+    .sb:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);color:#fff}
+
+    /* ── GROTTHUSS ANIMATION BOX ── */
+    .grotthuss-box{background:#0a1628;border-radius:16px;padding:1.5rem 2rem;margin-bottom:2.5rem;border:1px solid #1e3a5f;position:relative;overflow:hidden}
+    .grotthuss-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(14,124,110,.15),transparent 60%);pointer-events:none}
+    .grotthuss-title{font-family:var(--fm);font-size:.7rem;color:rgba(45,212,191,.7);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem}
+    .grotthuss-subtitle{font-family:var(--fh);font-style:italic;color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:1rem}
+    #grotthuss-canvas{width:100%;height:280px;display:block;border-radius:10px}
+    .grotthuss-legend{display:flex;gap:1.5rem;margin-top:.8rem;flex-wrap:wrap}
+    .gleg{display:flex;align-items:center;gap:.4rem;font-size:.7rem;font-family:var(--fm);color:rgba(255,255,255,.5)}
+    .gleg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+    /* ABOUT */
+    .about-box{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:2rem 2.5rem;margin-bottom:1.5rem}
+    .sanskrit{margin-top:1.2rem;padding:1.3rem 1.8rem;background:var(--gold-bg);border-left:4px solid var(--gold2);border-radius:0 10px 10px 0}
+    .sanskrit p:first-child{font-family:var(--fh);font-style:italic;color:var(--gold);font-size:1.1rem;line-height:2;margin-bottom:.4rem}
+    .sanskrit p:last-child{font-size:.8rem;color:var(--muted);margin:0}
+
+    /* ── RESEARCH ── */
+    .rcard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.8rem 2rem;margin-bottom:2rem;border-left:4px solid var(--teal);transition:box-shadow .2s,transform .2s}
+    .rcard:hover{box-shadow:0 6px 28px rgba(0,0,0,.09);transform:translateY(-2px)}
+    .rcard:nth-child(2){border-left-color:var(--gold2)}
+    .rcard:nth-child(3){border-left-color:#6366f1}
+    .rcard:nth-child(4){border-left-color:#0ea5e9}
+    .rmeta{font-size:.71rem;font-family:var(--fm);color:var(--teal);background:var(--teal-bg);display:inline-block;padding:.22rem .75rem;border-radius:4px;margin-bottom:.6rem}
+    .rlayout{display:grid;grid-template-columns:1fr 260px;gap:1.5rem;align-items:start;margin-top:.8rem}
+    .rcard ul{list-style:none;padding:0}
+    .rcard ul li{padding-left:1.3rem;position:relative;color:#3a4a6b;font-size:.87rem;margin-bottom:.4rem}
+    .rcard ul li::before{content:'›';position:absolute;left:0;color:var(--gold2);font-weight:700}
+    .tag{display:inline-block;padding:.18rem .6rem;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:.69rem;font-family:var(--fm);color:var(--teal);margin:.18rem .1rem}
+
+    /* SIM IMAGE PANELS */
+    .sim-panel{border-radius:10px;overflow:hidden;border:1px solid var(--border);position:relative;background:#0d1a2e}
+    .sim-panel img{width:100%;height:170px;object-fit:cover;display:block;opacity:.92;transition:opacity .3s}
+    .sim-panel:hover img{opacity:1}
+    .sim-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,16,40,.9),transparent);color:#fff;font-size:.68rem;font-family:var(--fm);padding:.7rem .8rem .5rem;letter-spacing:.04em}
+    .sim-label strong{display:block;font-size:.8rem;margin-bottom:.1rem;color:#7dd3ca}
+
+    /* 2x2 image grid */
+    .sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem}
+
+    /* ── PUBLICATIONS ── */
+    .pub{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.3rem 1.8rem;margin-bottom:1rem;position:relative;transition:border-color .2s,box-shadow .2s,transform .2s;overflow:hidden}
+    .pub::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border2);transition:background .2s}
+    .pub:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(0,0,0,.07);transform:translateX(4px)}
+    .pub:hover::before{background:var(--gold2)}
+    .pub-layout{display:grid;grid-template-columns:1fr 120px;gap:1.2rem;align-items:start}
+    .pub-year{font-family:var(--fm);font-size:.67rem;color:var(--gold);letter-spacing:.12em;margin-bottom:.3rem;text-transform:uppercase}
+    .pub-title{font-family:var(--fh);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.28rem;line-height:1.35}
+    .pub-journal{font-size:.82rem;color:var(--teal);font-style:italic;margin-bottom:.22rem}
+    .pub-authors{font-size:.76rem;color:var(--muted)}
+    .pub-img{width:120px;height:85px;object-fit:cover;border-radius:7px;border:1px solid var(--border)}
+    .pub-banner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:2rem}
+    .pub-bc{border-radius:10px;overflow:hidden;position:relative;border:1px solid var(--border)}
+    .pub-bc img{width:100%;height:100px;object-fit:cover;display:block}
+    .pub-bc .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,20,50,.82),transparent);color:#fff;font-size:.66rem;font-family:var(--fm);padding:.5rem .7rem}
+
+    /* ── SKILLS ── */
+    .skills-hero{border-radius:14px;overflow:hidden;margin-bottom:2rem;position:relative;height:160px}
+    .skills-hero img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.65)}
+    .skills-hero-ov{position:absolute;inset:0;display:flex;align-items:center;padding:2rem;background:linear-gradient(to right,rgba(14,124,110,.65),transparent)}
+    .skills-hero-ov p{color:#fff;font-family:var(--fh);font-size:1.1rem;font-style:italic;max-width:400px;margin:0}
+    .skills-intro{background:var(--teal-bg);border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:1.1rem 1.8rem;margin-bottom:2rem;font-size:.9rem;color:#1a3a35}
+    .methods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+    .mcard{border-radius:10px;overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+    .mcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+    .mcard img{width:100%;height:110px;object-fit:cover;display:block}
+    .mcbody{padding:.8rem 1rem;background:var(--bg2)}
+    .mctitle{font-family:var(--fm);font-size:.71rem;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem}
+    .mcdesc{font-size:.76rem;color:var(--muted)}
+    .sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+    .sc{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;transition:border-color .2s,box-shadow .2s}
+    .sc:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+    .sc h4{font-family:var(--fm);font-size:.71rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem}
+    .st{display:inline-block;padding:.22rem .6rem;background:#fff;border:1px solid var(--border);border-radius:5px;font-size:.72rem;font-family:var(--fm);color:var(--text);margin:.15rem .08rem}
+
+    /* ── AWARDS ── */
+    .cv-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.75rem 1.8rem;background:var(--text);color:#fff;border-radius:8px;font-family:var(--fm);font-size:.8rem;font-weight:500;text-decoration:none;margin-bottom:2.5rem;transition:background .2s,transform .2s;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+    .cv-btn:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+    .award-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+    .aphoto{border-radius:12px;overflow:hidden;position:relative;border:1px solid var(--border)}
+    .aphoto img{width:100%;height:190px;object-fit:cover;display:block;transition:transform .3s;filter:brightness(.9)}
+    .aphoto:hover img{transform:scale(1.04);filter:brightness(1)}
+    .aphoto-lbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,20,50,.88),transparent);color:#fff;font-size:.74rem;font-family:var(--fm);padding:1rem 1rem .6rem}
+    .aphoto-lbl strong{display:block;font-size:.86rem;margin-bottom:.1rem}
+    .aw{display:flex;gap:1.2rem;align-items:flex-start;padding:1rem 1.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:.75rem;transition:border-color .2s,box-shadow .2s}
+    .aw:hover{border-color:var(--border2);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+    .aw-icon{font-size:1.4rem;flex-shrink:0}
+    .aw-title{font-weight:500;color:var(--text);font-size:.9rem}
+    .aw-sub{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+
+    /* ── CONTACT ── */
+    .ccard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:2rem 2.5rem;max-width:580px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+    .crow{display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid var(--border)}
+    .crow:last-child{border:none}
+    .cicon{font-size:1.1rem;width:2rem;text-align:center;flex-shrink:0;margin-top:.1rem}
+    .clabel{font-size:.66rem;font-family:var(--fm);color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.18rem}
+    .cval{font-size:.88rem;color:var(--text)}
+    .cval a{color:var(--teal);text-decoration:none}
+    .cval a:hover{text-decoration:underline}
+
+    /* MOBILE */
+    .hamburger{display:none;position:fixed;top:1rem;left:1rem;z-index:200;background:#fff;border:1px solid var(--border);border-radius:8px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .overlay-mob{display:none}
+    @media(max-width:900px){.pub-layout,.rlayout{grid-template-columns:1fr}.pub-img{display:none}}
+    @media(max-width:768px){
+      aside{transform:translateX(-100%)}aside.open{transform:none}
+      main{margin-left:0}section{padding:2rem 1.4rem}h1{font-size:2.2rem}
+      .hero-content{flex-direction:column;padding:1.8rem;gap:1.2rem}
+      .hamburger{display:flex}
+      .overlay-mob{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
+      .overlay-mob.open{opacity:1;pointer-events:auto}
+      .methods,.sim-grid,.pub-banner,.award-photos{grid-template-columns:1fr}
+    }
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+  </style>
+</head>
+<body>
+<div class="overlay-mob" id="overlay" onclick="closeNav()"></div>
+<button class="hamburger" onclick="toggleNav()">☰</button>
+
+<aside id="sidebar">
+  <div class="slogo">Satyaranjan<br>Biswal</div>
+  <div class="srole">Computational Biophysicist</div>
+  <nav>
+    <a class="active" onclick="show('home')" id="nav-home">⌂&nbsp;&nbsp;Home</a>
+    <a onclick="show('research')" id="nav-research">🔬&nbsp;&nbsp;Research</a>
+    <a onclick="show('publications')" id="nav-publications">📚&nbsp;&nbsp;Publications</a>
+    <a onclick="show('skills')" id="nav-skills">💡&nbsp;&nbsp;Skills</a>
+    <a onclick="show('awards')" id="nav-awards">📜&nbsp;&nbsp;CV & Awards</a>
+    <a onclick="show('contact')" id="nav-contact">✉️&nbsp;&nbsp;Contact</a>
+  </nav>
+  <div class="sfooter">
+    Marie Curie Fellow<br>Hebrew University of Jerusalem<br><br>
+    <a href="https://scholar.google.com/citations?user=RAwf_swAAAAJ" target="_blank">Google Scholar</a> ·
+    <a href="https://www.researchgate.net/profile/Satyaranjan-Biswal" target="_blank">ResearchGate</a> ·
+    <a href="https://www.linkedin.com/in/satyaranjan-biswal-07063362" target="_blank">LinkedIn</a>
+  </div>
+</aside>
+
+<main>
+
+<!-- ══════════ HOME ══════════ -->
+<section id="home" class="active">
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-avatar">🧬</div>
+      <div class="hero-text">
+        <span class="lbl" style="color:rgba(255,255,255,.4)">Researcher · Marie Curie Fellow</span>
+        <h1>Satyaranjan Biswal</h1>
+        <span class="hero-tagline">Computational Biophysics · Molecular Dynamics · QM/MM · Quantum Chemistry</span>
+        <div class="hero-addr">📍 Fritz Haber Research Centre for Molecular Dynamics, Hebrew University of Jerusalem, Jerusalem 91904, Israel</div>
+        <div class="socials">
+          <a class="sb" href="/cdn-cgi/l/email-protection#366557424f574457585c575818545f4541575a765b575f5a185e435c5f185755185f5a">✉ Email</a>
+          <a class="sb" href="https://scholar.google.com/citations?user=RAwf_swAAAAJ" target="_blank">🎓 Scholar</a>
+          <a class="sb" href="https://www.researchgate.net/profile/Satyaranjan-Biswal" target="_blank">🔗 ResearchGate</a>
+          <a class="sb" href="https://www.linkedin.com/in/satyaranjan-biswal-07063362" target="_blank">💼 LinkedIn</a>
+          <a class="sb" href="https://x.com/Satya_o09" target="_blank">𝕏 Twitter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROTTHUSS ANIMATION -->
+  <div class="grotthuss-box">
+    <div class="grotthuss-title">Live Molecular Simulation</div>
+    <div class="grotthuss-subtitle">Grotthuss Mechanism — Proton Hopping along Collagen Triple Helix Surface</div>
+    <canvas id="grotthuss-canvas"></canvas>
+    <div class="grotthuss-legend">
+      <div class="gleg"><div class="gleg-dot" style="background:#f97316"></div> Collagen α1 strand</div>
+      <div class="gleg"><div class="gleg-dot" style="background:#a78bfa"></div> Collagen α2 strand</div>
+      <div class="gleg"><div class="gleg-dot" style="background:#34d399"></div> Collagen α3 strand</div>
+      <div class="gleg"><div class="gleg-dot" style="background:#ef4444"></div> Surface H₂O (oxygen)</div>
+      <div class="gleg"><div class="gleg-dot" style="background:#facc15;box-shadow:0 0 6px #facc15"></div> Excess Proton (H⁺)</div>
+      <div class="gleg"><div class="gleg-dot" style="background:#2dd4bf;border-radius:2px;width:18px;height:3px"></div> Hydrogen Bond</div>
+    </div>
+  </div>
+
+  <div class="about-box">
+    <h2>About</h2>
+    <p>I am a <strong>Marie Curie Doctoral Fellow</strong> at the Fritz Haber Research Centre for Molecular Dynamics, Hebrew University of Jerusalem, working under Prof. Noam Agmon. My research lies at the intersection of computational biophysics, quantum chemistry, and machine learning — with a particular focus on proton and ion transport mechanisms in hydrated biological macromolecules.</p>
+    <p>Using classical Molecular Dynamics and hybrid QM/MM simulations, I investigate proton transfer along protein surfaces and collagen-like peptides, aiming to elucidate the biophysical basis of cell bioenergetics, enzyme catalysis, and disease mechanisms.</p>
+    <div class="sanskrit">
+      <p>"सततं प्रयत्नशीलः स्याद् यः सफलतां लभते नरः।<br>अप्रयत्नेन न किञ्चित् भवति लोके कदाचन॥"</p>
+      <p>"He who strives ceaselessly attains success; nothing is ever achieved in this world without effort."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ RESEARCH ══════════ -->
+<section id="research">
+  <span class="lbl">Academic Work</span>
+  <h1>Research</h1>
+  <p style="margin-bottom:2rem;color:var(--muted)">Spanning three research environments — classical MD, QM/MM, and machine learning to study proton transport, protein hydration, and drug discovery.</p>
+
+  <!-- Card 1 -->
+  <div class="rcard">
+    <div class="rmeta">2020 – Present · Marie Curie Fellow · Hebrew University of Jerusalem</div>
+    <h3>Proton Transport in Biological Systems</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin:.2rem 0 0"><em>Advisor: Prof. Noam Agmon — Fritz Haber Research Centre for Molecular Dynamics</em></p>
+    <div class="rlayout">
+      <div>
+        <ul>
+          <li>Develop in-silico models of collagen-like triple helices</li>
+          <li>Study hydration layer structure and solvation water dynamics</li>
+          <li>Explicit-water simulations to analyze hydration layer's electrostatic surface potential (ESP)</li>
+          <li>Investigate whether ions and protons migrate along the protein surface</li>
+          <li>Introduce proton models to test surface proton mobility mechanisms</li>
+        </ul>
+        <div style="margin-top:1rem"><span class="tag">MD Simulations</span><span class="tag">QM/MM</span><span class="tag">Proton Transport</span><span class="tag">Collagen</span><span class="tag">GROMACS</span></div>
+      </div>
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&auto=format&fit=crop&q=80" alt="Protein MD simulation"/>
+        <div class="sim-label"><strong>MD Simulation</strong>Protein hydration dynamics</div>
+      </div>
+    </div>
+    <div class="sim-grid">
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80" alt="Collagen structure"/>
+        <div class="sim-label"><strong>Collagen Triple Helix</strong>Hydration layer & ESP analysis</div>
+      </div>
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=600&auto=format&fit=crop&q=80" alt="Proton surface mobility"/>
+        <div class="sim-label"><strong>Surface Proton Mobility</strong>Ion migration along protein surface</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="rcard">
+    <div class="rmeta" style="color:var(--gold2);background:var(--gold-bg)">Secondment (PhD) · Freie Universität Berlin</div>
+    <h3>Carboxylate-Grafted Collagen & Proton Transfer</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin:.2rem 0 0"><em>Supervisors: Prof. Noam Agmon & Prof. Ana-Nicoleta Bondar</em></p>
+    <div class="rlayout">
+      <div>
+        <ul>
+          <li>Developing biocompatible, carboxylate-enriched collagen peptides as proton-conducting "wires"</li>
+          <li>Modify collagen with aspartate and glutamate residues</li>
+          <li>Identify water wires and proton-hopping pathways</li>
+          <li>Examine proton mobility between carboxyl groups</li>
+        </ul>
+        <div style="margin-top:1rem"><span class="tag">Collagen Peptides</span><span class="tag">Proton Wires</span><span class="tag">Force Field</span><span class="tag">CP2K</span></div>
+      </div>
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&auto=format&fit=crop&q=80" alt="QM/MM simulation"/>
+        <div class="sim-label"><strong>QM/MM Simulation</strong>Carboxylate-grafted collagen — FU Berlin</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="rcard">
+    <div class="rmeta" style="color:#6366f1;background:#f3f3ff">Previous · IISER Berhampur, India</div>
+    <h3>Molecular Simulations & Computer-Aided Drug Design</h3>
+    <div class="rlayout">
+      <div>
+        <ul>
+          <li>Developed molecular simulations and force fields for drug-target interactions</li>
+          <li>Investigated anion sensing mechanisms in drug delivery systems</li>
+          <li>Computer-aided drug design — DFT, docking, virtual screening</li>
+        </ul>
+        <div style="margin-top:1rem"><span class="tag">CADD</span><span class="tag">Docking</span><span class="tag">DFT</span><span class="tag">Gaussian</span></div>
+      </div>
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&auto=format&fit=crop&q=80" alt="Drug binding simulation"/>
+        <div class="sim-label"><strong>Drug-Target Docking</strong>CADD — IISER Berhampur</div>
+      </div>
+    </div>
+    <div class="sim-grid">
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=600&auto=format&fit=crop&q=80" alt="Molecular simulation"/>
+        <div class="sim-label"><strong>Force Field Development</strong>Drug-receptor interaction modeling</div>
+      </div>
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1631563019676-dade0dbdb8be?w=600&auto=format&fit=crop&q=80" alt="DFT calculation"/>
+        <div class="sim-label"><strong>DFT Calculations</strong>Electronic structure analysis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="rcard">
+    <div class="rmeta" style="color:#0ea5e9;background:#f0f9ff">Previous · ICAR-IASRI, New Delhi</div>
+    <h3>Machine Learning-Based Virtual Screening</h3>
+    <div class="rlayout">
+      <div>
+        <ul>
+          <li>Machine learning pipelines for virtual screening of bioactive compounds</li>
+          <li>Integration of computational and statistical methods for drug discovery</li>
+        </ul>
+        <div style="margin-top:1rem"><span class="tag">Machine Learning</span><span class="tag">Virtual Screening</span><span class="tag">Bioinformatics</span><span class="tag">XGBoost</span></div>
+      </div>
+      <div class="sim-panel">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&auto=format&fit=crop&q=80" alt="Machine learning"/>
+        <div class="sim-label"><strong>ML Virtual Screening</strong>ICAR-IASRI, New Delhi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PUBLICATIONS ══════════ -->
+<section id="publications">
+  <span class="lbl">Peer-Reviewed Work</span>
+  <h1>Publications</h1>
+  <p style="margin-bottom:1.5rem">Full list on <a href="https://scholar.google.com/citations?user=RAwf_swAAAAJ" target="_blank">Google Scholar</a> 🧬🔬🧪💻💊</p>
+  <div class="pub-banner">
+    <div class="pub-bc"><img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?w=500&auto=format&fit=crop&q=70" alt="Biophysics"/><div class="cap">Collagen & Hydration</div></div>
+    <div class="pub-bc"><img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=500&auto=format&fit=crop&q=70" alt="COVID"/><div class="cap">SARS-CoV-2 Drug Targets</div></div>
+    <div class="pub-bc"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&auto=format&fit=crop&q=70" alt="Drug"/><div class="cap">Computer-Aided Drug Design</div></div>
+  </div>
+  <div class="pub"><div class="pub-layout"><div><div class="pub-year">2023</div><div class="pub-title">Collagen Structured Hydration</div><div class="pub-journal">Biomolecules, 13(12), 1744</div><div class="pub-authors">Biswal, S., &amp; Agmon, N.</div></div><img class="pub-img" src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?w=300&auto=format&fit=crop&q=70" alt=""/></div></div>
+  <div class="pub"><div class="pub-layout"><div><div class="pub-year">2023</div><div class="pub-title">Insights into the Binding Mechanism of Ascorbic Acid and Violaxanthin with VDE and CVDE Enzymes</div><div class="pub-journal">Photosynthesis Research, 156(3), 337–354</div><div class="pub-authors">Biswal, S., Gupta, P. S. S., Panda, S. K., Bhat, H. R., &amp; Rana, M. K.</div></div><img class="pub-img" src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=300&auto=format&fit=crop&q=70" alt=""/></div></div>
+  <div class="pub"><div class="pub-layout"><div><div class="pub-year">2023</div><div class="pub-title">Unmasking an Allosteric Binding Site of the Papain-Like Protease in SARS-CoV-2: MD Simulations of Corticosteroids</div><div class="pub-journal">J. Physical Chemistry Letters, 14(45), 10278–10284</div><div class="pub-authors">Panda, S. K., Sen Gupta, P. S., Karmakar, S., Biswal, S., Mahanandia, N. C., &amp; Rana, M. K.</div></div><img class="pub-img" src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=300&auto=format&fit=crop&q=70" alt=""/></div></div>
+  <div class="pub"><div class="pub-layout"><div><div class="pub-year">2022</div><div class="pub-title">Binding Mechanism and Structural Insights: COVID-19 Protein Target and Importin-α with Ivermectin</div><div class="pub-journal">J. Biomolecular Structure and Dynamics, 40(5), 2217–2226</div><div class="pub-authors">Sen Gupta, P. S., Biswal, S., Panda, S. K., Ray, A. K., &amp; Rana, M. K.</div></div><img class="pub-img" src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=300&auto=format&fit=crop&q=70" alt=""/></div></div>
+  <div class="pub"><div class="pub-layout"><div><div class="pub-year">2021</div><div class="pub-title">ACE-2-Derived Biomimetic Peptides for the Inhibition of Spike Protein of SARS-CoV-2</div><div class="pub-journal">Journal of Proteome Research, 20(2), 1296–1303</div><div class="pub-authors">Panda, S. K., Sen Gupta, P. S., Biswal, S., Ray, A. K., &amp; Rana, M. K.</div></div><img class="pub-img" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&auto=format&fit=crop&q=70" alt=""/></div></div>
+  <div class="pub"><div class="pub-layout"><div><div class="pub-year">2020</div><div class="pub-title">Computer-Aided Discovery of Bis-Indole Derivatives as Multi-Target Drugs Against Cancer and Bacterial Infections</div><div class="pub-journal">Journal of Molecular Liquids, 320, 114375</div><div class="pub-authors">Gupta, P. S. S., Bhat, H. R., Biswal, S., &amp; Rana, M. K.</div></div><img class="pub-img" src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&auto=format&fit=crop&q=70" alt=""/></div></div>
+</section>
+
+<!-- ══════════ SKILLS ══════════ -->
+<section id="skills">
+  <span class="lbl">Technical Expertise</span>
+  <h1>Skills</h1>
+  <div class="skills-hero">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=70" alt="HPC computing"/>
+    <div class="skills-hero-ov"><p>"Combining molecular simulations with machine learning to decode biological proton transport."</p></div>
+  </div>
+  <div class="skills-intro">I specialize in <strong>computational biophysics</strong>, focusing on proton and ion transport mechanisms in hydrated biological systems using Molecular Dynamics (MD), QM/MM, and machine learning.</div>
+  <h2>Core Methods</h2>
+  <div class="methods">
+    <div class="mcard"><img src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&auto=format&fit=crop&q=70" alt="MD"/><div class="mcbody"><div class="mctitle">⚗️ Molecular Dynamics</div><div class="mcdesc">GROMACS · AMBER · NAMD</div></div></div>
+    <div class="mcard"><img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&auto=format&fit=crop&q=70" alt="QM/MM"/><div class="mcbody"><div class="mctitle">🔬 QM/MM</div><div class="mcdesc">Gaussian · CP2K · ORCA · DFTB+</div></div></div>
+    <div class="mcard"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&auto=format&fit=crop&q=70" alt="ML"/><div class="mcbody"><div class="mctitle">🤖 Machine Learning</div><div class="mcdesc">TensorFlow · Keras · XGBoost</div></div></div>
+  </div>
+  <h2>Technical Skills</h2>
+  <div class="sgrid">
+    <div class="sc"><h4>⚗️ Comp. Chemistry</h4><span class="st">GROMACS</span><span class="st">AMBER</span><span class="st">NAMD</span><span class="st">Gaussian</span><span class="st">CP2K</span><span class="st">ORCA</span><span class="st">VASP</span><span class="st">DFTB+</span></div>
+    <div class="sc"><h4>💻 Programming</h4><span class="st">Python</span><span class="st">C</span><span class="st">C++</span><span class="st">Fortran</span><span class="st">Tcl</span><span class="st">Shell</span></div>
+    <div class="sc"><h4>🤖 Machine Learning</h4><span class="st">Scikit-learn</span><span class="st">TensorFlow</span><span class="st">Keras</span><span class="st">XGBoost</span></div>
+    <div class="sc"><h4>🖥️ Visualization</h4><span class="st">VMD</span><span class="st">Chimera</span><span class="st">ChimeraX</span><span class="st">PyMol</span></div>
+    <div class="sc"><h4>🧮 Methods</h4><span class="st">MD</span><span class="st">QM/MM</span><span class="st">DFT</span><span class="st">Virtual Screening</span><span class="st">Docking</span></div>
+    <div class="sc"><h4>🖧 HPC</h4><span class="st">HPC Clusters</span><span class="st">Parallel Computing</span><span class="st">Linux/Unix</span></div>
+  </div>
+</section>
+
+<!-- ══════════ AWARDS ══════════ -->
+<section id="awards">
+  <span class="lbl">Achievements</span>
+  <h1>CV &amp; Awards</h1>
+  <a class="cv-btn" href="SatyaranjanBiswal_CV.pdf" target="_blank">📄 Download CV (PDF)</a>
+  <h2>Conference Highlights</h2>
+  <div class="award-photos">
+    <div class="aphoto"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=70" alt="Conference"/><div class="aphoto-lbl"><strong>🥇 Best Poster Award</strong>TCS 2023 · IIT Madras, India</div></div>
+    <div class="aphoto"><img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&auto=format&fit=crop&q=70" alt="Conference"/><div class="aphoto-lbl"><strong>🌐 PROTON-ITN 2023</strong>Traunkirchen, Austria</div></div>
+    <div class="aphoto"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&auto=format&fit=crop&q=70" alt="HUJI"/><div class="aphoto-lbl"><strong>🎓 HUJI Symposium 2022</strong>Hebrew University of Jerusalem</div></div>
+    <div class="aphoto"><img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&auto=format&fit=crop&q=70" alt="Fellowship"/><div class="aphoto-lbl"><strong>🏅 MSCA Fellowship</strong>HORIZON 2020 · European Commission</div></div>
+  </div>
+  <h2>Fellowships &amp; Awards</h2>
+  <div class="aw"><div class="aw-icon">🏅</div><div><div class="aw-title">Marie Sklodowska-Curie Actions (MSCA) Doctoral Fellowship</div><div class="aw-sub">HORIZON 2020 · European Commission · 2020–Present</div></div></div>
+  <div class="aw"><div class="aw-icon">🥇</div><div><div class="aw-title">Best Poster Award</div><div class="aw-sub">TCS Conference · IIT Madras · 2023</div></div></div>
+  <div class="aw"><div class="aw-icon">🎖️</div><div><div class="aw-title">DADA Fellowship</div><div class="aw-sub">RWTH Aachen · 2020</div></div></div>
+  <div class="aw"><div class="aw-icon">🏆</div><div><div class="aw-title">Dean's List — S. Swaminathan Student Award</div><div class="aw-sub">2017</div></div></div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact">
+  <span class="lbl">Get in Touch</span>
+  <h1>Contact</h1>
+  <p style="margin-bottom:2.5rem">Feel free to reach out for collaborations, research inquiries, or general correspondence.</p>
+  <div class="ccard">
+    <div class="crow"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a href="/cdn-cgi/l/email-protection#b5e6d4c1ccd4c7d4dbdfd4db9bd7dcc6c2d4d9f5d8d4dcd99bddc0dfdc9bd4d69bdcd9"><span class="__cf_email__" data-cfemail="f9aa988d80988b9897939897d79b908a8e9895b994989095d7918c9390d7989ad79095">[email&#160;protected]</span></a></div></div></div>
+    <div class="crow"><div class="cicon">📍</div><div><div class="clabel">Address</div><div class="cval">137 Aronberg, Fritz Haber Research Centre<br>Safra Campus, Hebrew University of Jerusalem<br>Jerusalem 91904, Israel</div></div></div>
+    <div class="crow"><div class="cicon">🎓</div><div><div class="clabel">Google Scholar</div><div class="cval"><a href="https://scholar.google.com/citations?user=RAwf_swAAAAJ" target="_blank">View publications →</a></div></div></div>
+    <div class="crow"><div class="cicon">🔗</div><div><div class="clabel">ResearchGate</div><div class="cval"><a href="https://www.researchgate.net/profile/Satyaranjan-Biswal" target="_blank">researchgate.net/profile/Satyaranjan-Biswal</a></div></div></div>
+    <div class="crow"><div class="cicon">💼</div><div><div class="clabel">LinkedIn</div><div class="cval"><a href="https://www.linkedin.com/in/satyaranjan-biswal-07063362" target="_blank">satyaranjan-biswal-07063362</a></div></div></div>
+    <div class="crow"><div class="cicon">𝕏</div><div><div class="clabel">X / Twitter</div><div class="cval"><a href="https://x.com/Satya_o09" target="_blank">@Satya_o09</a></div></div></div>
+  </div>
+</section>
+
+</main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── NAV ── */
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  closeNav(); window.scrollTo(0,0);
+}
+function toggleNav(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeNav(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+const map={'#research':'research','#publications':'publications','#skills':'skills','#awards':'awards','#contact':'contact'};
+window.addEventListener('hashchange',()=>show(map[location.hash]||'home'));
+if(location.hash&&map[location.hash])show(map[location.hash]);
+
+/* ── COLLAGEN TRIPLE HELIX GROTTHUSS ANIMATION ── */
+(function(){
+  const canvas = document.getElementById('grotthuss-canvas');
+  const dpr = window.devicePixelRatio || 1;
+
+  function resize(){
+    const w = canvas.parentElement.clientWidth - 64;
+    canvas.style.width = w + 'px';
+    canvas.style.height = '280px';
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(280 * dpr);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const ctx = canvas.getContext('2d');
+  let frame = 0;
+
+  // Grotthuss hop state
+  const NW = 8;   // water molecules on surface
+  let hopIdx = 0;
+  let hopProg = 0;
+  const HOP_SPEED = 0.014;
+  let pause = 0;
+  const PAUSE = 38;
+
+  // Strand definitions (VMD-style colors)
+  const STRANDS = [
+    { phase: 0,             color: [249,115,22],  label:'α1' },
+    { phase: 2*Math.PI/3,  color: [167,139,250], label:'α2' },
+    { phase: 4*Math.PI/3,  color: [52,211,153],  label:'α3' }
+  ];
+
+  function ease(t){ return t<.5 ? 2*t*t : 1-2*(1-t)*(1-t); }
+
+  function draw(){
+    const CW = canvas.width / dpr;
+    const CH = canvas.height / dpr;
+    ctx.save();
+    ctx.scale(dpr, dpr);
+
+    // ── Background ──
+    const bgGrad = ctx.createLinearGradient(0,0,CW,CH);
+    bgGrad.addColorStop(0,'#050d1c');
+    bgGrad.addColorStop(.5,'#061812');
+    bgGrad.addColorStop(1,'#080510');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0,0,CW,CH);
+
+    // subtle grid
+    ctx.strokeStyle='rgba(255,255,255,.025)';
+    ctx.lineWidth=.5;
+    for(let x=0;x<CW;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,CH);ctx.stroke();}
+    for(let y=0;y<CH;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(CW,y);ctx.stroke();}
+
+    // ── Helix parameters ──
+    const startX = 50;
+    const endX   = CW - 50;
+    const helixLen = endX - startX;
+    const cY  = CH * .5;
+    const A   = CH * .26;  // helix radius
+    const nTurns = 2.4;
+    const rotAngle = frame * 0.006;  // slow rotation
+    const N_SEG = 120;
+
+    // ── Build all strand segments with depth (z) ──
+    const segments = [];
+    STRANDS.forEach((sd, si) => {
+      for(let i=0; i<N_SEG; i++){
+        const t0 = i/N_SEG, t1=(i+1)/N_SEG;
+        const a0 = 2*Math.PI*t0*nTurns + sd.phase + rotAngle;
+        const a1 = 2*Math.PI*t1*nTurns + sd.phase + rotAngle;
+        const x0=startX+t0*helixLen, y0=cY+A*Math.sin(a0), z0=A*Math.cos(a0);
+        const x1=startX+t1*helixLen, y1=cY+A*Math.sin(a1), z1=A*Math.cos(a1);
+        segments.push({x0,y0,z0,x1,y1,z1,zMid:(z0+z1)/2,col:sd.color,si});
+      }
+    });
+
+    // Sort back-to-front for painter's algorithm
+    segments.sort((a,b)=>a.zMid-b.zMid);
+
+    // ── Draw faint helix axis ──
+    ctx.save();
+    ctx.setLineDash([8,5]);
+    ctx.beginPath(); ctx.moveTo(startX,cY); ctx.lineTo(endX,cY);
+    ctx.strokeStyle='rgba(100,160,255,.07)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.restore();
+
+    // ── Draw helix strands ──
+    segments.forEach(seg=>{
+      const depth = (seg.zMid + A)/(2*A);  // 0=back, 1=front
+      const alpha = 0.18 + depth*0.82;
+      const lw    = 1.2 + depth*4;
+      const [r,g,b]=seg.col;
+      ctx.beginPath();
+      ctx.moveTo(seg.x0,seg.y0);
+      ctx.lineTo(seg.x1,seg.y1);
+      ctx.strokeStyle=`rgba(${r},${g},${b},${alpha})`;
+      ctx.lineWidth=lw; ctx.lineCap='round'; ctx.stroke();
+
+      // front-strand glow
+      if(depth>0.75){
+        ctx.beginPath();
+        ctx.moveTo(seg.x0,seg.y0);
+        ctx.lineTo(seg.x1,seg.y1);
+        ctx.strokeStyle=`rgba(${r},${g},${b},${(depth-0.75)*0.4})`;
+        ctx.lineWidth=lw+3; ctx.stroke();
+      }
+    });
+
+    // ── Cross-links between strands (like Gly-Pro-Hyp hydrogen bonds) ──
+    const nLinks = 5;
+    for(let l=0;l<nLinks;l++){
+      const t = 0.1 + l*(0.8/(nLinks-1));
+      const pts = STRANDS.map(sd=>{
+        const ang = 2*Math.PI*t*nTurns + sd.phase + rotAngle;
+        return {
+          x: startX + t*helixLen,
+          y: cY + A*Math.sin(ang),
+          z: A*Math.cos(ang)
+        };
+      });
+      // connect each pair
+      [[0,1],[1,2],[0,2]].forEach(([i,j])=>{
+        const zAvg=(pts[i].z+pts[j].z)/2;
+        const depth=(zAvg+A)/(2*A);
+        if(depth>0.2){
+          ctx.save();
+          ctx.setLineDash([2,3]);
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(200,220,255,${depth*0.12})`;
+          ctx.lineWidth=0.8; ctx.stroke();
+          ctx.restore();
+        }
+      });
+    }
+
+    // ── Water molecules on helix surface ──
+    // They sit on the outer surface of strand-0 path and rotate with helix
+    const waters = [];
+    for(let i=0;i<NW;i++){
+      const t  = 0.06 + (i/(NW-1))*0.88;
+      // offset phase to place waters on the outer surface
+      const ang = 2*Math.PI*t*nTurns + STRANDS[0].phase + rotAngle + 0.4;
+      const r   = A + 20;  // slightly outside helix
+      const wx  = startX + t*helixLen;
+      const wy  = cY + r*Math.sin(ang);
+      const wz  = r*Math.cos(ang);
+      waters.push({x:wx, y:wy, z:wz, t, ang});
+    }
+
+    // Draw H-bonds between adjacent water molecules
+    for(let i=0;i<NW-1;i++){
+      const wa=waters[i], wb=waters[i+1];
+      const zAvg=(wa.z+wb.z)/2;
+      const depth=(zAvg+A+20)/(2*(A+20));
+      const isActive = i===hopIdx;
+      ctx.save();
+      ctx.setLineDash([3,3]);
+      ctx.beginPath();
+      ctx.moveTo(wa.x,wa.y);
+      ctx.lineTo(wb.x,wb.y);
+      if(isActive){
+        const pulse=0.4+0.5*Math.abs(Math.sin(hopProg*Math.PI));
+        ctx.strokeStyle=`rgba(45,212,191,${pulse})`;
+        ctx.lineWidth=2;
+      } else {
+        ctx.strokeStyle=`rgba(45,212,191,${Math.max(0.06,depth*0.25)})`;
+        ctx.lineWidth=0.8;
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Draw water molecules (back to front by z)
+    const waterOrder = waters.map((w,i)=>({...w,i})).sort((a,b)=>a.z-b.z);
+    waterOrder.forEach(({x,y,z,i})=>{
+      const depth=(z+A+20)/(2*(A+20));
+      const vis=Math.max(0.15,depth);
+      const oR=5+depth*3;
+
+      // O-H bonds
+      [-0.55,-Math.PI+0.55].forEach(ha=>{
+        const hx=x+Math.cos(ha)*13, hy=y+Math.sin(ha)*13;
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(hx,hy);
+        ctx.strokeStyle=`rgba(200,215,235,${vis*0.45})`; ctx.lineWidth=1; ctx.stroke();
+        ctx.beginPath(); ctx.arc(hx,hy,3.5,0,Math.PI*2);
+        ctx.fillStyle=`rgba(215,225,245,${vis*0.65})`; ctx.fill();
+        ctx.fillStyle=`rgba(80,100,130,${vis*0.9})`;
+        ctx.font='5.5px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.fillText('H',hx,hy);
+      });
+
+      // Oxygen
+      const og=ctx.createRadialGradient(x-1,y-1,1,x,y,oR+3);
+      og.addColorStop(0,`rgba(254,170,170,${vis})`);
+      og.addColorStop(1,`rgba(180,28,28,${vis*0.25})`);
+      ctx.beginPath(); ctx.arc(x,y,oR,0,Math.PI*2);
+      ctx.fillStyle=og; ctx.fill();
+      ctx.strokeStyle=`rgba(255,255,255,${vis*0.18})`; ctx.lineWidth=0.5; ctx.stroke();
+      ctx.fillStyle=`rgba(255,255,255,${vis*0.9})`;
+      ctx.font=`bold ${6+depth*2}px sans-serif`;
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('O',x,y);
+    });
+
+    // ── Proton (H⁺) hopping ──
+    const srcW = waters[hopIdx];
+    const dstW = waters[Math.min(hopIdx+1,NW-1)];
+    let px,py,pz;
+
+    if(pause>0){
+      px=dstW.x+9; py=dstW.y-10; pz=dstW.z;
+    } else {
+      const ep=ease(hopProg);
+      px=srcW.x+(dstW.x-srcW.x)*ep+9;
+      py=srcW.y+(dstW.y-srcW.y)*ep-10;
+      pz=srcW.z+(dstW.z-srcW.z)*ep;
+    }
+
+    const pDepth=(pz+A)/(2*A);
+    const pVis=Math.max(0.55,pDepth);
+    const pR=5+pDepth*3;
+    const pulse=1+0.22*Math.sin(frame*0.18);
+
+    // hop trail
+    if(pause===0 && hopProg>0.08){
+      const ep2=ease(Math.max(0,hopProg-0.18));
+      const trX=srcW.x+(dstW.x-srcW.x)*ep2+9;
+      const trY=srcW.y+(dstW.y-srcW.y)*ep2-10;
+      const tg=ctx.createLinearGradient(trX,trY,px,py);
+      tg.addColorStop(0,'rgba(250,204,21,0)');
+      tg.addColorStop(1,`rgba(250,204,21,${pVis*0.35})`);
+      ctx.beginPath(); ctx.moveTo(trX,trY); ctx.lineTo(px,py);
+      ctx.strokeStyle=tg; ctx.lineWidth=2.5; ctx.stroke();
+    }
+
+    // outer glow
+    const glow=ctx.createRadialGradient(px,py,1,px,py,pR*3*pulse);
+    glow.addColorStop(0,`rgba(250,204,21,${pVis*0.85})`);
+    glow.addColorStop(0.35,`rgba(255,160,0,${pVis*0.45})`);
+    glow.addColorStop(1,'rgba(250,204,21,0)');
+    ctx.beginPath(); ctx.arc(px,py,pR*3*pulse,0,Math.PI*2);
+    ctx.fillStyle=glow; ctx.fill();
+
+    // core
+    ctx.beginPath(); ctx.arc(px,py,pR*pulse*.55,0,Math.PI*2);
+    ctx.fillStyle='#fde047'; ctx.fill();
+    ctx.fillStyle='#1a0000';
+    ctx.font='bold 6.5px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('H⁺',px,py);
+
+    // ── Corner labels ──
+    ctx.textAlign='left'; ctx.textBaseline='top';
+    ctx.fillStyle='rgba(160,190,255,.45)';
+    ctx.font='9px monospace';
+    ctx.fillText('Collagen Triple Helix — Surface Hydration Layer',8,8);
+
+    // strand legend
+    const ld=[{c:[249,115,22],l:'α1(I)'},{c:[167,139,250],l:'α2(I)'},{c:[52,211,153],l:'α3(I)'}];
+    ld.forEach(({c,l},i)=>{
+      const lx=8, ly=26+i*12;
+      ctx.fillStyle=`rgb(${c[0]},${c[1]},${c[2]})`; ctx.fillRect(lx,ly,10,3);
+      ctx.fillStyle=`rgba(${c[0]},${c[1]},${c[2]},.75)`;
+      ctx.font='7.5px monospace'; ctx.fillText(l,lx+14,ly-1);
+    });
+
+    ctx.textAlign='right';
+    ctx.fillStyle='rgba(45,212,191,.5)';
+    ctx.font='7.5px monospace';
+    ctx.fillText('H⁺ Surface Migration via Grotthuss Mechanism',CW-8,8);
+
+    ctx.restore();
+
+    // update state
+    if(pause>0){
+      pause--;
+      if(pause===0){
+        hopIdx=(hopIdx+1)%(NW-1);
+        hopProg=0;
+      }
+    } else {
+      hopProg+=HOP_SPEED;
+      if(hopProg>=1){ hopProg=1; pause=PAUSE; }
+    }
+    frame++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
