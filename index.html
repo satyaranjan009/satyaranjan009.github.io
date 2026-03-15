@@ -883,12 +883,44 @@ if(location.hash&&map[location.hash])show(map[location.hash]);
   draw();
 })();
 </script>
-  <footer>
-  <p>© 2026 Satya Ranjan Biswal</p>
+
+<footer style="text-align:center;margin-top:30px;">
+
+<p>© 2026 Satya Ranjan Biswal</p>
+
+<div style="margin-top:20px;">
+
+<h3>Visitor Insights</h3>
+
+<p><strong>Total Visitors</strong></p>
+<div id="gc-counter"></div>
+
+<p style="margin-top:15px;"><strong>Visitor Locations</strong></p>
+
+<script type="text/javascript" id="clstr_globe" 
+src="//clustrmaps.com/globe.js?d=TWDY-dSYfhMTV4oOZK3tC05Xfosegva6rq2ef1xfCvU"></script>
+
+</div>
+
 </footer>
 
-<!-- Website analytics -->
+<!-- GoatCounter analytics -->
 <script data-goatcounter="https://satyabiswal.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+
+<script>
+var gcWait = setInterval(function () {
+  if (window.goatcounter && window.goatcounter.visit_count) {
+    clearInterval(gcWait);
+    window.goatcounter.visit_count({
+      append: '#gc-counter',
+      type: 'html',
+      path: 'TOTAL',
+      no_branding: true
+    });
+  }
+}, 100);
+</script>
+
 </body>
 </html>
