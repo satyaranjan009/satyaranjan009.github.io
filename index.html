@@ -884,21 +884,22 @@ if(location.hash&&map[location.hash])show(map[location.hash]);
 })();
 </script>
 
-<footer style="text-align:center;margin-top:30px;">
+<footer style="text-align:center;margin-top:40px;padding:20px 10px;border-top:1px solid #ddd;">
 
-<p>© 2026 Satya Ranjan Biswal</p>
+<p style="font-size:14px;color:#666;">© 2026 Satya Ranjan Biswal</p>
 
-<div style="margin-top:20px;">
+<!-- Visitor Insights (Homepage only) -->
+<div id="visitor-insights" style="margin-top:15px;">
 
-<h3>Visitor Insights</h3>
+<h3 style="margin-bottom:10px;">Visitor Insights</h3>
 
-<p><strong>Total Visitors</strong></p>
-<div id="gc-counter"></div>
+<p style="font-size:14px;"><strong>Total Visitors</strong></p>
+<div id="gc-counter" style="margin-bottom:10px;font-size:18px;font-weight:600;"></div>
 
-<p style="margin-top:15px;"><strong>Visitor Locations</strong></p>
-
-<script type="text/javascript" id="clstr_globe" 
+<div style="transform: scale(0.8); display:inline-block;">
+<script type="text/javascript" id="clstr_globe"
 src="//clustrmaps.com/globe.js?d=TWDY-dSYfhMTV4oOZK3tC05Xfosegva6rq2ef1xfCvU"></script>
+</div>
 
 </div>
 
@@ -906,19 +907,19 @@ src="//clustrmaps.com/globe.js?d=TWDY-dSYfhMTV4oOZK3tC05Xfosegva6rq2ef1xfCvU"></
 
 <!-- GoatCounter analytics -->
 <script data-goatcounter="https://satyabiswal.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+async src="//gc.zgo.at/count.js"></script>
 
 <script>
 var gcWait = setInterval(function () {
-  if (window.goatcounter && window.goatcounter.visit_count) {
-    clearInterval(gcWait);
-    window.goatcounter.visit_count({
-      append: '#gc-counter',
-      type: 'html',
-      path: 'TOTAL',
-      no_branding: true
-    });
-  }
+if (window.goatcounter && window.goatcounter.visit_count) {
+clearInterval(gcWait);
+window.goatcounter.visit_count({
+append: '#gc-counter',
+type: 'html',
+path: 'TOTAL',
+no_branding: true
+});
+}
 }, 100);
 </script>
 
