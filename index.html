@@ -882,51 +882,44 @@ if(location.hash&&map[location.hash])show(map[location.hash]);
 
   draw();
 })();
-  </script>
+</script>
+
 <!-- Contact Section -->
 <section id="contact">
-<h2>Contact</h2>
+  <h2>Contact</h2>
+  <p>Email: satyaranjan.biswal@mail.huji.ac.il</p>
+  <p>Website: https://satyaranjan009.github.io</p>
 
-<p>Email: satyaranjan.biswal@mail.huji.ac.il</p>
-<p>Website: https://satyaranjan009.github.io</p>
+  <div style="margin-top:18px; text-align:center; font-size:13px;">
+    <div id="gc-counter" style="margin-bottom:8px;"></div>
 
+    <div style="transform:scale(0.6); transform-origin:center; display:inline-block;">
+      <script type="text/javascript" id="clstr_globe"
+      src="//clustrmaps.com/globe.js?d=TWDY-dSYfhMTV4oOZK3tC05Xfosegva6rq2ef1xfCvU"></script>
+    </div>
+  </div>
 </section>
 
-<!-- Visitor Insights -->
-<section id="visitor-insights" style="text-align:center;margin-top:40px;">
-
-<h2>Visitor Insights</h2>
-
-<p style="font-size:14px;"><strong>Total Visitors</strong></p>
-<div id="gc-counter" style="margin-bottom:10px;font-size:18px;font-weight:600;"></div>
-
-<div style="transform: scale(0.8); display:inline-block;">
-<script type="text/javascript" id="clstr_globe"
-src="//clustrmaps.com/globe.js?d=TWDY-dSYfhMTV4oOZK3tC05Xfosegva6rq2ef1xfCvU"></script>
-</div>
-
-</section>
-
-<footer style="text-align:center;margin-top:40px;padding:20px 10px;border-top:1px solid #ddd;">
-<p style="font-size:14px;color:#666;">© 2026 Satya Ranjan Biswal</p>
+<footer style="text-align:center; margin-top:20px; padding:10px; border-top:1px solid #ddd;">
+  <p style="font-size:12px; color:#666;">© 2026 Satya Ranjan Biswal</p>
 </footer>
 
-<!-- GoatCounter analytics -->
 <script data-goatcounter="https://satyabiswal.goatcounter.com/count"
 async src="//gc.zgo.at/count.js"></script>
 
 <script>
 var gcWait = setInterval(function () {
-if (window.goatcounter && window.goatcounter.visit_count) {
-clearInterval(gcWait);
-window.goatcounter.visit_count({
-append: '#gc-counter',
-type: 'html',
-path: 'TOTAL',
-no_branding: true
-});
-}
+  if (window.goatcounter && window.goatcounter.visit_count) {
+    clearInterval(gcWait);
+    window.goatcounter.visit_count({
+      append: '#gc-counter',
+      type: 'html',
+      path: 'TOTAL',
+      no_branding: true
+    });
+  }
 }, 100);
+</script>
 
 </body>
 </html>
